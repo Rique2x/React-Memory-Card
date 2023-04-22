@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './index';
+import backgroundVideo from './assets/background.mp4';
+import backgroundImage from './assets/background.png';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Test</div>
+      <video id="background-video" autoPlay loop muted poster={backgroundImage}>
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
     </div>
   );
 }
