@@ -10,6 +10,8 @@ import { useState } from 'react';
 
 function App() {
   const [selected, setSelected] = useState([]);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const characters = getCharacters();
 
@@ -18,17 +20,23 @@ function App() {
 
     // If the selection already exists
     if (selected.some((object) => object.name === obj.name)) {
-      return setSelected([]);
+      setScore(0);
+      setSelected([]);
+      return;
+
     }
 
+    setScore(score + 1);
     setSelected([...selected, obj]);
+
+    if (score === highScore) setHighScore(highScore + 1);
   };
 
   return (
     <div className="App">
       <h1>One Piece Memory Game</h1>
 
-      <Scoreboard />
+      <Scoreboard score={score} highScore={highScore}/>
       <Cards characters={characters} onSelection={onSelection}/>
 
       <video id="background-video" autoPlay loop muted poster={backgroundImage}>
