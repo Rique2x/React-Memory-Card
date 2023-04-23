@@ -54,7 +54,7 @@ function App() {
       <h1>One Piece Memory Game</h1>
 
       <Scoreboard score={score} highScore={highScore}/>
-      <Cards getRandomChars={getRandomChars}/>
+      <Cards getRandomChars={getRandomChars} onSelection={onSelection} />
 
       <video id="background-video" autoPlay loop muted poster={backgroundImage}>
         <source src={backgroundVideo} type="video/mp4" />
