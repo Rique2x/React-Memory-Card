@@ -3,10 +3,9 @@ import './index';
 import backgroundVideo from './assets/background.mp4';
 import backgroundImage from './assets/background.png';
 
-import Cards from './components/Cards';
-import Scoreboard from './components/Scoreboard';
 import charArr from './utilities/charArr';
 import { useState } from 'react';
+import { Header, Scoreboard, Cards,  } from './components/';
 
 function App() {
   const [characters, setCharacters] = useState(charArr);
@@ -51,12 +50,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>One Piece Memory Game</h1>
+      <Header />
 
       <Scoreboard score={score} highScore={highScore}/>
       <Cards getRandomChars={getRandomChars} onSelection={onSelection} />
 
-      <video id="background-video" autoPlay loop muted poster={backgroundImage}>
+      <video id="background-video" autoPlay loop muted playsInline poster={backgroundImage}>
         <source src={backgroundVideo} type="video/mp4" />
       </video>
     </div>
