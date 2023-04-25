@@ -5,7 +5,7 @@ import backgroundImage from './assets/background.png';
 
 import {charArr} from '../src/utilities';
 import { useState } from 'react';
-import { Header, Scoreboard, Cards,  } from './components/';
+import { Header, Scoreboard, Cards, GameOver } from './components/';
 
 function App() {
   const [characters, setCharacters] = useState(charArr);
@@ -14,17 +14,19 @@ function App() {
   const [highScore, setHighScore] = useState(0);
   const [canPlayAudio] = useState(1);
 
+  const resetGame = () => {
+    setScore(0);
+    setSelected([]);
+    setCharacters(charArr);
+  };
 
   const onSelection = (obj) => (e) => {
     e.preventDefault();
 
     // If the selection already exists reset game
-    if (selected.some((object) => object.name === obj.name)) {
-      setScore(0);
-      setSelected([]);
-      setCharacters(charArr);
+     if (selected.some((object) => object.name === obj.name)) {
+      resetGame();
       return;
-
     }
 
     setScore(score + 1);
@@ -34,26 +36,19 @@ function App() {
     if (score === highScore) setHighScore(highScore + 1);
   };
 
-  const getRandomChars = () => {
-    const arr1 = [...selected.sort(() => Math.random() - 0.5)];
-    const arr2 = [...characters.sort(() => Math.random() - 0.5)];
-
-    const newArray = [];
-
-    while (newArray.length < 4) {
-      if (arr1.length) newArray.push(arr1.pop());
-      if (arr2.length) newArray.push(arr2.pop());
-    }
-
-    return newArray.sort(() => Math.random() - 0.5);
-  };
+ 
 
   return (
     <div className="App">
       <Header />
 
       <Scoreboard score={score} highScore={highScore}/>
-      <Cards getRandomChars={getRandomChars} onSelection={onSelection} canPlayAudio={canPlayAudio}/>
+      
+      {selected.length === charArr.length ? (
+        <GameOver resetGame={resetGame} />
+      ) : (
+        <Cards characters={characters} selected={selected} onSelection={onSelection} canPlayAudio={canPlayAudio} />
+      )}
 
       <video id="background-video" autoPlay loop muted playsInline poster={backgroundImage}>
         <source src={backgroundVideo} type="video/mp4" />
