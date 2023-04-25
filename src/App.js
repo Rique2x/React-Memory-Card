@@ -3,7 +3,7 @@ import './index';
 import backgroundVideo from './assets/background.mp4';
 import backgroundImage from './assets/background.png';
 
-import charArr from './utilities/charArr';
+import {charArr} from '../src/utilities';
 import { useState } from 'react';
 import { Header, Scoreboard, Cards,  } from './components/';
 
@@ -12,7 +12,7 @@ function App() {
   const [selected, setSelected] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-
+  const [canPlayAudio] = useState(1);
 
 
   const onSelection = (obj) => (e) => {
@@ -53,7 +53,7 @@ function App() {
       <Header />
 
       <Scoreboard score={score} highScore={highScore}/>
-      <Cards getRandomChars={getRandomChars} onSelection={onSelection} />
+      <Cards getRandomChars={getRandomChars} onSelection={onSelection} canPlayAudio={canPlayAudio}/>
 
       <video id="background-video" autoPlay loop muted playsInline poster={backgroundImage}>
         <source src={backgroundVideo} type="video/mp4" />
