@@ -25,7 +25,7 @@ function App() {
       resetGame();
       return;
     }
-
+ 
     setScore(score + 1);
     setSelected([...selected, obj]);
     setCharacters([...characters.filter((char) => char.name !== obj.name)]);
