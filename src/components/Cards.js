@@ -3,6 +3,7 @@ import { wantedArr, getRandomChars } from '../utilities';
 import sound from '../assets/sound-effects/card-flip.mp3';
 
 function Cards(props) {
+  const { characters, selected, canPlayAudio } = props;
   const [randomChars, setRandomChars] = useState([]);
   const [cardBacks, setCardBacks] = useState([]);
   const [canClick, setCanClick] = useState(1);
@@ -60,7 +61,8 @@ function Cards(props) {
     }, 2000);
   };
 
-  <div className="card-container">
+  return(
+    <div className="card-container">
       {randomChars.map((obj, index) => (
         <div
         key={index}
@@ -73,6 +75,7 @@ function Cards(props) {
         </div>
       ))}
   </div>
+  )
 }
 
 export default Cards;

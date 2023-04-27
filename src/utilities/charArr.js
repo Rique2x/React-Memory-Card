@@ -2,7 +2,7 @@ function importAll(r) {
   return r.keys().map(r);
 }
 
-const images = importAll(require.context('../assets/wanted-images/', false, /\.(webp)$/));
+const images = importAll(require.context('../assets/character-images/', false, /\.(webp)$/));
   
 const charArr = images.map((path) => {
   return {

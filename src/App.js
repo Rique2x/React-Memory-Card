@@ -20,11 +20,8 @@ function App() {
     setCharacters(charArr);
   };
 
-  const onSelection = (obj) => (e) => {
-    e.preventDefault();
-
-    // If the selection already exists reset game
-     if (selected.some((object) => object.name === obj.name)) {
+  const onSelection = (obj) => {
+    if (selected.some((object) => object.name === obj.name)) {
       resetGame();
       return;
     }
